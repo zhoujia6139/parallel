@@ -307,8 +307,8 @@ parameter_types! {
     pub SelfParaId: ParaId = para_a_id();
     pub MaxRewardsPerEra: Balance = dot(1000f64);
     pub MaxSlashesPerEra: Balance = dot(1f64);
-    pub const MinStakeAmount: Balance = 0;
-    pub const MinUnstakeAmount: Balance = 0;
+    pub MinStakeAmount: Balance = dot(0.5f64);
+    pub MinUnstakeAmount: Balance = dot(0.5f64);
 }
 
 impl pallet_utility::Config for Test {

@@ -26,6 +26,26 @@ fn stake_fails_due_to_exceed_capacity() {
 }
 
 #[test]
+fn stake_should_fail_when_min_stake_amount() {
+    new_test_ext().execute_with(|| {
+        assert_err!(
+            LiquidStaking::stake(Origin::signed(BOB), dot(0.1f64)),
+            Error::<Test>::StakeAmountTooSmall
+        );
+    })
+}
+
+#[test]
+fn unstake_should_fail_when_min_unstake_amount() {
+    new_test_ext().execute_with(|| {
+        assert_err!(
+            LiquidStaking::unstake(Origin::signed(BOB), dot(0.1f64)),
+            Error::<Test>::UnstakeAmountTooSmall
+        );
+    })
+}
+
+#[test]
 fn stake_should_work() {
     new_test_ext().execute_with(|| {
         assert_ok!(LiquidStaking::stake(Origin::signed(ALICE), dot(10f64)));
@@ -420,8 +440,8 @@ fn test_transact_nominate_work() {
 #[test]
 fn stake_should_correctly_add_insurance_pool() {
     new_test_ext().execute_with(|| {
-        LiquidStaking::stake(Origin::signed(ALICE), 1000).unwrap();
-        assert_eq!(InsurancePool::<Test>::get(), 5);
+        LiquidStaking::stake(Origin::signed(ALICE), dot(100f64)).unwrap();
+        assert_eq!(InsurancePool::<Test>::get(), dot(0.5f64));
     })
 }
 
