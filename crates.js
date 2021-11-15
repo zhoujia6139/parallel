@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["pallet_amm","pallet_crowdloans","pallet_currency_adapter","pallet_liquid_staking","pallet_liquidation","pallet_liquidity_mining","pallet_loans","pallet_loans_rpc","pallet_loans_rpc_runtime_api","pallet_nominee_election","pallet_prices","pallet_router","parallel_primitives"];
